@@ -117,16 +117,16 @@ const int pwPin1 = 10;
 long sensor, inches, cm, val1,val2,val3;
 boolean t;
 
-Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1,PIN, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1,PINS, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels = Adafruit_NeoPixel(1,PIN, NEO_GRB + NEO_KHZ800); // Create a variable for the Flora onboard neopixel, at Pin 8
+Adafruit_NeoPixel pixel = Adafruit_NeoPixel(1,PINS, NEO_GRB + NEO_KHZ800); // Create variable for the array of neopixels, connecting them from pin 3
 
 
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(pwPin1, INPUT);
-  pinMode(buzzpin,OUTPUT);
-  pixels.begin();
+  pinMode(pwPin1, INPUT); //Specify input
+  pinMode(buzzpin,OUTPUT); // Specify buzzer at ouput on pin 6 
+  pixels.begin(); 
   pixel.begin();
   pixel.show();
   pixels.show();
@@ -134,7 +134,7 @@ void setup() {
 }
 
 void read_sensor (){      //Getting sensor readings 
-sensor = pulseIn(pwPin1, HIGH); // Variable to store sensor readings 
+sensor = pulseIn(pwPin1, HIGH); // Variable to store sensor readings, starts a timer when HIGH and counts in microseconds, time of flight of 147 microseconds corresponds to 1 inch 
 inches = sensor / 147; // Converting to inches
 cm = inches * 2.54; // Going from inches to centimeters
 }
